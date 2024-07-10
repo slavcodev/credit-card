@@ -44,7 +44,8 @@ jobs:
         run: vendor/bin/phpunit
 
       - if: env.EXECUTE_COVERAGE == 'true'
+        # This fails in forks
         continue-on-error: true
         run: |
           wget https://scrutinizer-ci.com/ocular.phar
-          php ocular.phar code-coverage:upload --format=php-clover --repository=gp/laravel-validation-rules/credit-card coverage.clover
+          php ocular.phar code-coverage:upload --format=php-clover coverage.clover
